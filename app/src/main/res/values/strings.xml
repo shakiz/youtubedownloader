@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Youtube Downloader</string>
     <string name="enter_url">Enter url</string>
+    <string name="url_not_found">Url not found</string>
+    <string name="status">Status</string>
+    <string name="download_complete">Download Complete</string>
+    <string name="download_start">Download started</string>
+    <string name="download_failed">Download Failed</string>
 </resources>
