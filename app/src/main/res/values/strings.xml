@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Youtube Downloader</string>
+    <string name="enter_url">Enter url</string>
 </resources>
