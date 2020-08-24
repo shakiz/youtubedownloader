@@ -65,10 +65,6 @@ public class UX {
         loadingDialog.setContentView(R.layout.loading_layout);
         loadingDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         loadingDialog.getWindow().setDimAmount(0.6f);
-        if (loadingDialog != null) {
-            loadingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        }
-
         loadingDialog.setCanceledOnTouchOutside(false);
         loadingDialog.show();
     }
