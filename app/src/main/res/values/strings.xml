@@ -19,4 +19,8 @@
     <string name="exit_from_app">Exit from app</string>
     <string name="want_to_close_app">Do you want to exit from app?</string>
     <string name="error">Error</string>
+    <string name="settings">Settings</string>
+    <string name="folder">Folder</string>
+    <string name="folder_change_long_text">Change your download directory</string>
+    <string name="thanks_for_being_with_us">Thanks for being with us</string>
 </resources>
