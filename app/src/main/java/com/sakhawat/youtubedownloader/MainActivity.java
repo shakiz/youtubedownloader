@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.startDownload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DownloadVideo().execute();
+                startDownload();
             }
         });
         //endregion
@@ -124,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
         showStart();
 
         downloading = true;
+        try {
+            YoutubeDL.getInstance().init(getApplication());
+        } catch (YoutubeDLException e) {
+            Log.e("Error", "Failed to initialize youtubedl-android", e);
+        }
         Disposable disposable = Observable.fromCallable(() -> YoutubeDL.getInstance().execute(request, callback))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
