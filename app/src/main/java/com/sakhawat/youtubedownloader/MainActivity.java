@@ -2,8 +2,6 @@ package com.sakhawat.youtubedownloader;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -19,8 +17,6 @@ import com.yausername.youtubedl_android.DownloadProgressCallback;
 import com.yausername.youtubedl_android.YoutubeDL;
 import com.yausername.youtubedl_android.YoutubeDLException;
 import com.yausername.youtubedl_android.YoutubeDLRequest;
-import com.yausername.youtubedl_android.mapper.VideoInfo;
-
 import java.io.File;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean downloading = false;
     private EditText urlEditText;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private TextView tv_status, tv_command_output;
+    private TextView tv_status;
     private ProgressBar progress_bar, pb_status;
     private UX ux;
 
@@ -65,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         ux = new UX(this);
         urlEditText = findViewById(R.id.urlEditText);
         tv_status = findViewById(R.id.tv_status);
-        tv_command_output = findViewById(R.id.tv_command_output);
         progress_bar = findViewById(R.id.progress_bar);
         pb_status = findViewById(R.id.pb_status);
     }
@@ -77,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tools.exitApp();
+                ux.getCustomDialog(R.layout.dialog_layout_exit_app, getString(R.string.close_application));
             }
         });
         //endregion
@@ -86,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.startDownload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tools.hideSoftKeyboard(MainActivity.this);
                 startDownload();
             }
         });
@@ -134,16 +130,18 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(youtubeDLResponse -> {
                     pb_status.setVisibility(View.GONE);
+                    tv_status.setVisibility(View.VISIBLE);
                     progress_bar.setProgress(100);
                     tv_status.setText(getString(R.string.download_complete));
-                    tv_command_output.setText(youtubeDLResponse.getOut());
+                    ux.getCustomDialog(R.layout.dialog_layout_download_finish,getString(R.string.ok));
                     Toast.makeText(MainActivity.this, "Download successful", Toast.LENGTH_LONG).show();
                     downloading = false;
                 }, e -> {
                     if(BuildConfig.DEBUG) Log.e("Download Error",  "Failed to download", e);
                     pb_status.setVisibility(View.GONE);
+                    tv_status.setVisibility(View.VISIBLE);
                     tv_status.setText(getString(R.string.download_failed));
-                    tv_command_output.setText(e.getMessage());
+                    ux.getCustomDialog(R.layout.dialog_layout_download_failed,getString(R.string.error));
                     Toast.makeText(MainActivity.this, "Download failed", Toast.LENGTH_LONG).show();
                     downloading = false;
                 });
@@ -169,42 +167,13 @@ public class MainActivity extends AppCompatActivity {
         tv_status.setText(getString(R.string.download_start));
         progress_bar.setProgress(0);
         pb_status.setVisibility(View.VISIBLE);
-    }
-
-    private class DownloadVideo extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected void onPreExecute() {
-            ux.getLoadingView();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                YoutubeDL.getInstance().init(getApplication());
-                YoutubeDLRequest request = new YoutubeDLRequest("https://www.youtube.com/watch?v=668nUCeBHyY");
-                request.addOption("-f", "best");
-                VideoInfo streamInfo = YoutubeDL.getInstance().getInfo(request);
-                System.out.println(streamInfo.getUrl());
-                Log.v("Error", "Video Downloading");
-            } catch (YoutubeDLException | InterruptedException e) {
-                Log.e("Error", "failed to initialize youtubedl-android", e);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            ux.removeLoadingView();
-        }
+        tv_status.setVisibility(View.VISIBLE);
     }
 
     //region activity components
     @Override
     public void onBackPressed() {
-        tools.exitApp();
+        ux.getCustomDialog(R.layout.dialog_layout_exit_app, getString(R.string.close_application));
     }
     //endregion
 }

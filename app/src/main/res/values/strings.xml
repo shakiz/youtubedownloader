@@ -7,4 +7,16 @@
     <string name="download_start">Download started</string>
     <string name="download_failed">Download Failed</string>
     <string name="downloading">Downloading.....</string>
+    <string name="successful">Successful</string>
+    <string name="successful_detail_message">Download completed successfully</string>
+    <string name="ok">Ok</string>
+    <string name="unsuccessful">Unsuccessful</string>
+    <string name="unsuccessful_detail_message">Download failed unfortunately, please try again</string>
+    <string name="team_travers">Team Travers</string>
+    <string name="developed_by">Developed By</string>
+    <string name="tag_line">Fastest youtube downloader ever</string>
+    <string name="close_application">Close Application</string>
+    <string name="exit_from_app">Exit from app</string>
+    <string name="want_to_close_app">Do you want to exit from app?</string>
+    <string name="error">Error</string>
 </resources>
