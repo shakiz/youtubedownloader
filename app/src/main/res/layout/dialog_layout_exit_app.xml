@@ -40,7 +40,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:textColor="@color/md_red_900"
+                    android:textColor="@color/md_grey_800"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -66,8 +66,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/CloseApp"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_gravity="center"
                         android:padding="12dp"
                         android:src="@drawable/ic_check"
@@ -81,8 +81,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/NotCloseApp"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="8dp"

@@ -2,10 +2,14 @@ package com.sakhawat.youtubedownloader;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -133,6 +137,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ux.getCustomDialog(R.layout.dialog_layout_exit_app, getString(R.string.close_application));
+            }
+        });
+        //endregion
+
+        //region set on back press
+        findViewById(R.id.settingsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             }
         });
         //endregion
