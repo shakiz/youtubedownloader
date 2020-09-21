@@ -23,4 +23,7 @@
     <string name="folder">Folder</string>
     <string name="folder_change_long_text">Change your download directory</string>
     <string name="thanks_for_being_with_us">Thanks for being with us</string>
+    <string name="enter_youtube_url">Enter youtube url</string>
+    <string name="be_default_download_directory">By default the video downloaded in the following directory</string>
+    <string name="default_directory_path">Download/fast-youtube-downloader</string>
 </resources>

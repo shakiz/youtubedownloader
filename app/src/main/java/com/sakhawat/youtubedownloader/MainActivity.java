@@ -2,14 +2,11 @@ package com.sakhawat.youtubedownloader;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         public void onProgressUpdate(float progress, long etaInSeconds) {
             runOnUiThread(() -> {
                         progress_bar.setProgress((int) progress);
-                        tv_status.setText(String.valueOf(progress) + "% (Required " + String.valueOf(etaInSeconds) + " seconds more)");
+                        tv_status.setText(progress + "% (Required " + etaInSeconds + " seconds more)");
                     }
             );
         }
@@ -141,15 +138,6 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
-        //region set on back press
-        findViewById(R.id.settingsButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-            }
-        });
-        //endregion
-
         //region start download button
         findViewById(R.id.startDownload).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
         //region get permission
         if (!tools.isStoragePermissionGranted()) {
-            Toast.makeText(MainActivity.this, "Grant storage permission and retry", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Grant storage permission and try again", Toast.LENGTH_LONG).show();
             return;
         }
         //endregion

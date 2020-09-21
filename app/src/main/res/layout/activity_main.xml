@@ -59,6 +59,7 @@
             android:layout_marginBottom="8dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:visibility="gone"
             android:gravity="center"
             android:elevation="8dp"
             android:orientation="vertical"
@@ -119,7 +120,7 @@
                         android:layout_marginRight="5dp"
                         android:background="@drawable/new_edit_text_rectangle_bg"
                         android:focusable="true"
-                        android:hint="@string/enter_url"
+                        android:hint="@string/enter_youtube_url"
                         android:imeOptions="actionDone"
                         android:inputType="textCapWords"
                         android:maxLength="250"
@@ -202,7 +203,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-1262591690854460/1889363877">
+        ads:adUnitId="ca-app-pub-3017517613101119/2622088518">
 
     </com.google.android.gms.ads.AdView>
 
